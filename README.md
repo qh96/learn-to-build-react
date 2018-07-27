@@ -28,7 +28,7 @@ Note: it would be a great help to successfully build and run this demo before go
 ```
 
 ## Disclaimers
-Most of the codes is originally written by [@zpao](https://github.com/zpao) in [Build react from scratch](https://github.com/zpao/building-react-from-scratch). There have been existing summarizable and detailed tutorials - [learn-react-source-code](https://dragonforker.github.io/learn-react-source-code/) 
+Most of the codes is originally written by [@zpao](https://github.com/zpao) in [Build react from scratch](https://github.com/zpao/building-react-from-scratch). There have been existing summarizable and detailed tutorials - [Learn-React-Source-Code](https://dragonforker.github.io/learn-react-source-code/) written by [@Chang](https://github.com/cyan33/).
 
 ## What Doesn't Cover
 
