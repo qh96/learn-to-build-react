@@ -4,7 +4,7 @@ When I first got into React, I went to [reactjs.org](reactjs.org) and found the 
 
 ## Mounting
 
-When we see the `render()` is referenced, you must get curious how it is defined. When you go deeper into the codes you find this:
+When we see the `render()` is referenced, you might get curious how it is defined. When you go deeper into the codes you find this:
 
 ```js
 function render(element, node) {
@@ -121,7 +121,7 @@ function mount(element, node){
 ```
 So `mount()` is a element -> component -> renderedNode process. It get rendered element from `render()` and finally generate real DOM nodes.
 
-In the next blog we will talk about `update`
+In the next blog we will talk about "How mount() works".
 
 
 
