@@ -1,6 +1,6 @@
 # How mountComponent() work
 
-In the last blog we introduce mounting. With mounting, React elements show on the screen. In this part we will talk about a very key function - `mountComponent()`. What it is? It seems like a recursion process, How is that gonna work? How to apply mountComponent() to different Component? That's are very important question which you will have answers after reading this. Now let's rock!
+In the last blog we introduce mounting. With mounting, React elements show on the screen. In this part we will talk about a very key function - `mountComponent()`. What is it? It seems like a recursion process, how is that gonna work? How to apply mountComponent() to different Components? That are very important questions and you will have answers after reading this blog. Now let's rock!
 
 ## Reconciler
 
@@ -19,7 +19,7 @@ function mount(element, node){
 }
 ```
 
-From that we know there is a reconciler to make mountComponent do reconciliation. What that mean? Well, in the last blog we talk about different types of components, which are mainly divided into two kinds - DOMComponent and User-defined Component(Composite Component). We need to apply distinct methods towards different types of component. And that's why we use Reconciliation.
+From that we know there is a reconciler to make mountComponent do reconciliation. What's that mean? Well, in the last blog we talk about different types of components, which are mainly divided into two kinds - DOMComponent and User-defined Component(Composite Component). We need to apply distinct methods towards different types of components. And that's why we use Reconciliation.
 
 We create two Components class - Component(User-defined component) and DOMComponent. In both we append diverse mountComponent() methods with same name - mountComponent(). There is a terminology we called - **Polymorphism**. What we use here is actually a function polimorphism.
 
@@ -33,7 +33,7 @@ function mountComponent(component){
 
 ## Composite Component
 
-We will talk about how Composite Component is mounted. Have a look at Composite Component:
+Have a look at Composite Component:
 
 ```js
 //Component.js
@@ -71,7 +71,7 @@ class Component{
 ```
 It seems like we don't have much to say. It just standard flow : element -> component -> Node. 
 
-The composite internal instances need to store:
+As it said [here](https://reactjs.org/docs/implementation-notes.html#introducing-internal-instances), the composite internal instances need to store:
 
 * The current element.
 * The public instance if element type is a class.
@@ -181,7 +181,7 @@ function updateStyle(node, updateStyles){
   })
 }
 ```
-Simply, we have two loops. What we do is we do mount node's properties. Since it is a mount process, we set prevProps to {}. But here we mentioned a little 'update'. In the first loop we set each old styleName to '', for example:
+Simply, we have two loops. What we do is we do mount node's properties. Since it is a mount process, we set prevProps to {}. But here we mentioned a little bit 'update'. In the first loop we set each old styleName to '', for example:
 ```
 updateStyles={
   color = ''
