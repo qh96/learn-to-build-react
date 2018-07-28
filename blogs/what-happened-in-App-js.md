@@ -4,9 +4,42 @@ When I first got into React, I went to [reactjs.org](reactjs.org) and found the 
 
 ## Mounting
 
-When we see the `render()` is referenced, you might get curious how it is defined. When you go deeper into the codes you find this:
+Let's give a demo first :
 
 ```js
+const Dilithium = require('../dilithium')
+
+class App extends Dilithium.Component{
+  render(){
+    return(
+      <div>
+        <div>
+          <h1 style={{color:'red'}}>Header 1</h1>
+          <SmallHeader />
+          <h2 style={{color:'blue'}}>Header 2</h2>
+        </div>
+        <h3>Header 3</h3>
+      </div>
+    )
+  }
+}
+
+class SmallHeader extends Dilithium.Component{
+  render(){
+    return(
+      <h4 style={{color:'#a100d2'}}>SmallHeader</h4>
+    )
+  }
+}
+
+Dilithium.render(<App />,document.getElementById('root'))
+```
+
+When we see the `render()` is appeared, you might get curious how it is defined. When you go deeper into the codes you find this:
+
+```js
+// Mount.js
+
 function render(element, node) {
   assert(Element.isValidElement(element));
 
@@ -58,6 +91,28 @@ React.createElement(
   'Click Me'
 )
 ```
+
+Let's have a look at `createElement()`
+```js
+function createElement(type, config, children){
+  // clone config(props), and apply props.children with cases on 1 or more children.
+  let props = Object.assign({},config)
+  let childCount = arguments.length - 2
+  if (childCount > 1){
+    props.children = Array.prototype.slice.call(arguments, 2)
+  }else if(childCount === 1){
+    props.children = children
+  }
+
+  return{
+    type,
+    props
+  }
+}
+```
+In short, `createElement()` incorporate the element's JSX children into the current element's object as a prop. 
+
+
 ### Component
 
 And, what is component? A React page is built on **components**. What we used to construct a react page via self-defined like `<Game />` or DOM `<div>` are components. A component can be declared in several different ways:
@@ -72,25 +127,25 @@ The element can be instantiate to component through:
 let component = instantiateComponent(element)
 
 function instantiateComponent(element){
-	let componentInstance
-	if (typeof element.type === 'function'){
-		// class
-		componentInstance = new element.type(element.props)
-		componentInstance._construct(element) // this._currentElement = element
-	}else if (typeof element.type === 'string'){
-		// DOM component like 'div'...
-		componentInstance = new DOMComponent(element)
-	}else if(typeof element === 'string' || typeof element === 'number' ){
-		// Text like 'helloworld'...
-		componentInstance = new DOMComponent({
-			type : 'span',
-			props: {
-				children : element
-			}
-		})
-	}
+  let componentInstance
+  if (typeof element.type === 'function'){
+    // class
+    componentInstance = new element.type(element.props)
+    componentInstance._construct(element) // this._currentElement = element
+  }else if (typeof element.type === 'string'){
+    // DOM component like 'div'...
+    componentInstance = new DOMComponent(element)
+  }else if(typeof element === 'string' || typeof element === 'number' ){
+    // Text like 'helloworld'...
+    componentInstance = new DOMComponent({
+      type : 'span',
+      props: {
+        children : element
+      }
+    })
+  }
 
-	return componentInstance
+  return componentInstance
 }
 ```
 
@@ -111,17 +166,17 @@ So let's back !! Return to the first question? what is mount?
 Have a look at `mount()`:
 ```js
 function mount(element, node){
-	// At mount, element -> component -> renderedNode
-	let component = instantiateComponent(element)
-	let renderedNode = Reconciler.mountComponent(component)//we talk about Reconciler later
+  // At mount, element -> component -> renderedNode
+  let component = instantiateComponent(element)
+  let renderedNode = Reconciler.mountComponent(component)//we talk about Reconciler later
 
-	DOM.empty(node)
-	DOM.appendChildren(node, renderedNode)
+  DOM.empty(node)
+  DOM.appendChildren(node, renderedNode)
 }
 ```
 So `mount()` is a element -> component -> renderedNode process. It get rendered element from `render()` and finally generate real DOM nodes.
 
-In the next blog we will talk about "How mount() works".
+In the next blog we will talk about "How mountComponent() works".
 
 
 
