@@ -4,7 +4,7 @@ It took me a couple of days to read [Build react from scratch](https://github.co
 
 ## Blogs
 * [What happened in App.js](blogs/what-happened-in-App-js.md)
-* [TBA]()
+* [How mountComponent() Work](blogs/how-mountComponent-work.md)
  
 ## What I'm Doing
 Though with those tutorials, blogs and friendly comments, I still met a lot of trouble with codes and try to understanding what these means. These are source codes afterall ^.^

@@ -7,6 +7,8 @@ When I first got into React, I went to [reactjs.org](reactjs.org) and found the 
 Let's give a demo first :
 
 ```js
+// demo/App.js
+
 const Dilithium = require('../dilithium')
 
 class App extends Dilithium.Component{
@@ -94,6 +96,8 @@ React.createElement(
 
 Let's have a look at `createElement()`
 ```js
+// Element.js
+
 function createElement(type, config, children){
   // clone config(props), and apply props.children with cases on 1 or more children.
   let props = Object.assign({},config)
@@ -124,6 +128,8 @@ And, what is component? A React page is built on **components**. What we used to
 The element can be instantiate to component through:
 
 ```js
+// instantiateComponent.js
+
 let component = instantiateComponent(element)
 
 function instantiateComponent(element){
@@ -165,6 +171,8 @@ So let's back !! Return to the first question? what is mount?
 
 Have a look at `mount()`:
 ```js
+//Mount.js
+
 function mount(element, node){
   // At mount, element -> component -> renderedNode
   let component = instantiateComponent(element)
