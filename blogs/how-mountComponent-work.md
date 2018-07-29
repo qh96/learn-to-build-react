@@ -181,7 +181,7 @@ function updateStyle(node, updateStyles){
   })
 }
 ```
-Simply, we have two loops. What we do is we do mount node's properties. Since it is a mount process, we set prevProps to {}. But here we mentioned a little bit 'update'. In the first loop we set each old styleName to '', for example:
+Simply, we have two loops. What we do is mount node's properties. Since it is a mount process, we set prevProps to {}. But here we mentioned a little bit 'update'. In the first loop we set each old styleName to '', for example:
 ```
 updateStyles={
   color = ''
@@ -216,7 +216,7 @@ Now, let's go into a more complex `_createInitialDOMChildren()`:
 
 We will talk about this function in the next blog.
 
-
+  
 
 
 
