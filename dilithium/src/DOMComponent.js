@@ -1,5 +1,6 @@
 const MultiChild = require('./MultiChild')
 const DOM = require('./DOM')
+const assert = require('./Assert')
 
 class DOMComponent extends MultiChild{
 	constructor(element){
@@ -17,6 +18,31 @@ class DOMComponent extends MultiChild{
 		this._createInitialDOMChildren(this._currentElement.props)
 		
 		return node
+	}
+
+	unmountComponent() {
+    	this.unmountChildren()
+  	}
+
+	updateComponent(prevElement, nextElement){
+		this._currentElement = nextElement
+		this._updateNodeProperties(prevElement.props, nextElement.props)
+		this._updateDOMChildren(prevElement.props, nextElement.props)
+	}
+
+	_updateDOMChildren(prevProps, nextProps){
+		const prevType = typeof prevProps.children
+		const nextType = typeof nextProps.children
+		assert(prevType === nextType)
+
+		//No child, retun
+		if (nextType === 'undefined') return
+		
+		if (nextType === 'string' || nextType === 'number'){
+			this._domNode.textContent = nextProps.children
+		}else{
+			this.updateChildren(nextProps.children)
+		}
 	}
 
 	_updateNodeProperties(prevProps, nextProps){
@@ -38,7 +64,7 @@ class DOMComponent extends MultiChild{
 					updateStyles[propName] = ''
 				})
 			}else{
-				DOM.removeProperty(this._domNode, propName)
+				DOM.removeProperties(this._domNode, propName)
 			}
 		})
 

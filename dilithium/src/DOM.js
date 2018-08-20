@@ -29,11 +29,26 @@ function removeChild(node, child) {
   node.removeChild(child)
 }
 
+function replaceNode(prevNode, newNode){
+	const parentNode = prevNode.parentNode
+	empty (parentNode)
+	parentNode.appendNode(newNode)
+}
+
+function insertAfter(node, child, afterChild) {
+  node.insertBefore(
+    child,
+    afterChild ? afterChild.nextSibling : node.firstChild
+  )
+}
+
 module.exports = {
+  replaceNode,
   removeProperties,
   setProperty,
   updateStyle,
   appendChildren,
   empty,
-  removeChild
+  removeChild,
+  insertAfter
 }
