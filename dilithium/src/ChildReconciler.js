@@ -1,5 +1,6 @@
 const traverseAllChildren = require('./TraverseAllChildren')
-
+const shouldUpdateComponent = require('./shouldUpdateComponent')
+const Reconciler = require('./Reconciler')
 /*
 	{
       '.0.0': {_currentElement, ...}
@@ -34,6 +35,52 @@ function instantiateChildren(children){
 	return childInstances
 }
 
+function unmountChildren(renderedChildren) {
+  if (!renderedChildren)  return
+
+  Object.keys(renderedChildren).forEach(childKey => {
+    Reconciler.unmountComponent(renderedChildren[childKey])
+  })
+}
+
+function updateChildren(
+	prevChildren, // instance tree
+	nextChildren, // element tree
+	mountNodes, removeNodes){
+	const instantiateComponent = require('./instantiateComponent')
+	Object.keys(nextChildren).forEach((childKey) => {
+		const prevChildComponent = prevChildren[childKey]
+		const prevElement = prevChildComponent && prevChildComponent._currentElement
+		const nextElement = nextChildren[childKey]
+
+		// three scenarios
+
+		if (prevElement && shouldUpdateComponent(prevElement, nextElement)){
+			Reconciler.receiveComponent(prevChildComponent, nextElement)
+			nextChildren[childKey] = prevChildComponent
+		}else{
+			if (prevChildComponent){
+				removeNodes[childKey] = prevChildComponent._domNode
+				Reconciler.unmountComponent(prevChildComponent)
+			}
+			const nextChildComponent = instantiateComponent(nextElement)
+			nextChildren[childKey] = nextChildComponent
+			mountNodes.push(Reconciler.mountComponent(nextChildComponent))
+		}
+	})
+
+	Object.keys(prevChildren).forEach((childKey)=>{
+		if (!nextChildren.hasOwnProperty(childKey)){
+			const prevChildComponent = prevChildren[childKey]
+			removeNodes[childKey] = prevChildComponent
+			Reconciler.unmountComponent(prevChildComponent)
+		}
+	})
+
+}
+
 module.exports = {
-	instantiateChildren
+  instantiateChildren,
+  unmountChildren,
+  updateChildren,
 }

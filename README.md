@@ -6,6 +6,8 @@ It took me a couple of days to read [Build react from scratch](https://github.co
 * [Doc1 - What happened in App.js](blogs/what-happened-in-App-js.md)
 * [Doc2 - How mountComponent() Work](blogs/how-mountComponent-work.md)
 * [Doc3 - How mountComponent() Work - Contd](blogs/how-mountComponent-work-contd.md)
+* [Doc4 - Update](blogs/update.md)
+* [Doc5 - Update - Contd](blogs/update-ctd.md)
 
 ## What I'm Doing
 Though with those tutorials, blogs and friendly comments, I still met a lot of troubles with codes and always try to figure out what these means. These are source codes afterall ^.^

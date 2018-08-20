@@ -1,26 +1,40 @@
 const Dilithium = require('../dilithium')
 
-class App extends Dilithium.Component{
-	render(){
-		return(
-			<div>
-				<div>
-					<h1 style={{color:'red'}}>Header 1</h1>
-					<SmallHeader />
-					<h2 style={{color:'blue'}}>Header 2</h2>
-				</div>
-				<h3>Header 3</h3>
-			</div>
-		)
-	}
+class App extends Dilithium.Component {
+  render() {
+    return (
+      <div>
+        <h3>Heading 3</h3>
+
+        <SmallHeaderWithState />
+      </div>
+    )
+  }
 }
 
-class SmallHeader extends Dilithium.Component{
-	render(){
-		return(
-			<h4 style={{color:'#a100d2'}}>SmallHeader</h4>
-		)
-	}
+class SmallHeaderWithState extends Dilithium.Component {
+  constructor() {
+    super()
+    this.state = { number: 0 }
+    setInterval(() => {
+      this.setState({
+        number: this.state.number + 1
+      })
+    }, 1000)
+  }
+
+  render() {
+    return (
+      <div>
+        <div style={{ 
+          fontSize: '36px',
+          color: 'red'
+        }}>SmallHeader</div>
+        { this.state.number }
+      </div>
+    )
+  }
 }
 
-Dilithium.render(<App />,document.getElementById('root'))
+Dilithium.render(<App />, document.getElementById('root'))
+  
