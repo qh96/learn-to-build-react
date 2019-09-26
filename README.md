@@ -31,7 +31,7 @@ Note: it would be a great helps to successfully build and run this demo before g
 ```
 
 ## Disclaimers
-Most of the codes is originally written by [@zpao](https://github.com/zpao) in [Build react from scratch](https://github.com/zpao/building-react-from-scratch).
+[@zpao](https://github.com/zpao) in [Build react from scratch](https://github.com/zpao/building-react-from-scratch).
 
 ## What Doesn't Cover
 
