@@ -1,6 +1,6 @@
 # Learn To Build React
 
-It took me a while to watch [Build react from scratch](https://github.com/zpao/building-react-from-scratch) and that was the most ideas came from. **To make it more understandable, this repo try to give more add-ons on how react works step by steps.**
+It took me a while to watch [Build react from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg&list=PLUD4kD-wL_zYSfU3tIYsb4WqfFQzO_EjQ) and that was the most ideas came from. **To make it more understandable, this repo try to give more add-ons on how react works step by steps.**
 
 ## Blogs
 * [Doc1 - What happened in App.js](blogs/what-happened-in-App-js.md)
@@ -29,30 +29,6 @@ Note: it would be a great helps to successfully build and run this demo before g
 > npm install
 > npm run build
 ```
-
-## Disclaimers
-[@zpao](https://github.com/zpao) in [Build react from scratch](https://github.com/zpao/building-react-from-scratch).
-
-## What Doesn't Cover
-
-* defaultProps
-* propTypes
-* keys
-* refs
-* batching
-* events
-* createClass
-* warnings
-* browser
-* optimizations
-* rendering null
-* DOM updates
-* SVG
-* life cycle hooks
-* error boundaries
-* perf tooling and optimizing
-* PureComponents
-* functional components
 
 
 
